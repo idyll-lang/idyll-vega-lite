@@ -1,0 +1,29 @@
+{
+  "name": "idyll-vega-lite",
+  "version": "1.0.0",
+  "description": "Idyll wrapper component for vega lite",
+  "main": "lib.js",
+  "scripts": {
+    "build": "babel index.js -o lib.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idyll-lang/idyll-vega-lite.git"
+  },
+  "author": "Matthew Conlen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/idyll-lang/idyll-vega-lite/issues"
+  },
+  "homepage": "https://github.com/idyll-lang/idyll-vega-lite#readme",
+  "dependencies": {
+    "idyll-component": "^1.1.2",
+    "react-vega-lite": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  }
+}
