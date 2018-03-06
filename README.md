@@ -10,3 +10,5 @@ $ npm install --save idyll-vega-lite
 ```
 [IdyllVegaLite data:`{}` spec:`{}` /]
 ```
+
+See https://idyll-lang.github.io/examples/csv/ for example usage.
