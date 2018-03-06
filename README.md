@@ -22,6 +22,8 @@ In your Idyll markup,
       type: ...
     }
   }
-}` /]```
+}` /]
+
+```
 
 See https://idyll-lang.github.io/examples/csv/ for example usage.
