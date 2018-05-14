@@ -1,8 +1,7 @@
 const React = require('react');
-const IdyllComponent = require('idyll-component');
-const VL = require('react-vega-lite').default;
+const VL = require('react-vega-lite');
 
-class VegaLite extends IdyllComponent {
+class VegaLite extends React.Component {
   render() {
     const data = {
       values: this.props.data
