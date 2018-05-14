@@ -4,10 +4,10 @@ Idyll wrapper component for vega lite
 ## Usage
 
 ```
-$ npm install --save idyll-vega-lite
+$ npm install --save idyll-vega-lite vega vega-lite
 ```
 
-In your Idyll markup, 
+In your Idyll markup,
 
 ```
 [IdyllVegaLite data:myDataset spec:`{
