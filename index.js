@@ -1,15 +1,20 @@
 const React = require('react');
-const VL = require('react-vega-lite');
 
-class VegaLite extends React.Component {
+import { VegaLite } from 'react-vega';
+import { Handler } from 'vega-tooltip';
+
+
+class IdyllVegaLite extends React.Component {
   render() {
-    const data = {
-      values: this.props.data
-    };
+    const { spec, data, ...props } = this.props;
+    const adjustedSpec = { ...this.props.spec, data: { values: data } };
     return (
-      <VL {...this.props} data={data} />
+      <VegaLite
+        {...props}
+        spec={adjustedSpec}
+        tooltip={new Handler().call} />
     );
   }
 }
 
-module.exports = VegaLite;
+module.exports = IdyllVegaLite;
