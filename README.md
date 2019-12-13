@@ -4,7 +4,7 @@ Idyll wrapper component for vega lite
 ## Usage
 
 ```
-$ npm install --save idyll-vega-lite vega vega-lite
+$ npm install --save idyll-vega-lite
 ```
 
 In your Idyll markup,
