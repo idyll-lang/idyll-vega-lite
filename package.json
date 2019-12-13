@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/idyll-lang/idyll-vega-lite#readme",
   "dependencies": {
-    "idyll-component": "^1.1.2",
-    "react-vega-lite": "^1.0.1"
+    "react-vega": "^7.1.1",
+    "vega": "^5.9.0",
+    "vega-lite": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
