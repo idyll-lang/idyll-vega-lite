@@ -1,18 +1,34 @@
 const React = require('react');
 
 import { VegaLite } from 'react-vega';
-import { Handler } from 'vega-tooltip';
+
 
 
 class IdyllVegaLite extends React.Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      handler: null
+    }
+  }
+
+  componentDidMount() {
+    const { Handler } = require('vega-tooltip')
+    this.setState({
+      handler: new Handler().call
+    })
+  }
   render() {
     const { spec, data, ...props } = this.props;
+    const { handler } = this.state;
     const adjustedSpec = { ...this.props.spec, data: { values: data } };
     return (
       <VegaLite
         {...props}
         spec={adjustedSpec}
-        tooltip={new Handler().call} />
+        tooltip={handler} />
     );
   }
 }
