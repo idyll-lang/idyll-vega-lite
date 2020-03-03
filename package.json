@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/idyll-lang/idyll-vega-lite#readme",
   "dependencies": {
+    "core-js": "^3.6.4",
     "react-vega": "^7.1.1",
     "vega": "^5.9.0",
     "vega-lite": "^4.0.0",
