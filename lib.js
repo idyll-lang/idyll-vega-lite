@@ -2,8 +2,6 @@
 
 var _reactVega = require("react-vega");
 
-var _vegaTooltip = require("vega-tooltip");
-
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -41,19 +39,37 @@ var IdyllVegaLite =
 function (_React$Component) {
   _inherits(IdyllVegaLite, _React$Component);
 
-  function IdyllVegaLite() {
+  function IdyllVegaLite(props) {
+    var _this;
+
     _classCallCheck(this, IdyllVegaLite);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(IdyllVegaLite).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(IdyllVegaLite).call(this, props));
+    _this.state = {
+      handler: null
+    };
+    return _this;
   }
 
   _createClass(IdyllVegaLite, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _require = require('vega-tooltip'),
+          Handler = _require.Handler;
+
+      this.setState({
+        handler: new Handler().call
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           spec = _this$props.spec,
           data = _this$props.data,
           props = _objectWithoutProperties(_this$props, ["spec", "data"]);
+
+      var handler = this.state.handler;
 
       var adjustedSpec = _objectSpread({}, this.props.spec, {
         data: {
@@ -63,7 +79,7 @@ function (_React$Component) {
 
       return React.createElement(_reactVega.VegaLite, _extends({}, props, {
         spec: adjustedSpec,
-        tooltip: new _vegaTooltip.Handler().call
+        tooltip: handler
       }));
     }
   }]);
