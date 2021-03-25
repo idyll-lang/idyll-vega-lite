@@ -26,4 +26,38 @@ In your Idyll markup,
 
 ```
 
+
+For more readable code, set an alias for the component name:
+
+```
+[Plot 
+  data:myDataset 
+  spec:`{
+    mark: "line",
+    encoding: {
+      x: {
+        field: ...,
+        type: ...
+      },
+      y: {
+        field: ...,
+        type: ...
+      }
+    }
+  }` 
+/]
+
+```
+
+by updating the `idyll.alias` property in `package.json`:
+
+```
+"idyll": {
+  ...,
+  "alias": {
+    "Plot": "IdyllVegaLite"
+  }
+}
+```
+
 See https://idyll-lang.github.io/examples/csv/ for example usage.
