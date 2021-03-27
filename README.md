@@ -35,7 +35,7 @@ data as a separate parameter:
    data: { ... },
    ...
 }` /]
-
+```
 
 See https://idyll-lang.github.io/examples/csv/ for example usage.
 
