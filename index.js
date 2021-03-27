@@ -14,6 +14,10 @@ class IdyllVegaLite extends React.Component {
     }
   }
 
+  isVegaSpec() {
+    return this.props.mode === 'vega' || (this.props.spec.$schema && this.props.spec.$schema.startsWith("https://vega.github.io/schema/vega/"))
+  }
+
   componentDidMount() {
     const { Handler } = require('vega-tooltip')
     this.setState({
@@ -25,8 +29,11 @@ class IdyllVegaLite extends React.Component {
     let adjustedSpec = spec;
 
     let Runtime = VegaLite;
-    if (this.props.mode === 'vega') {
+    if (this.isVegaSpec()) {
       Runtime = Vega;
+      if (!adjustedSpec.data) {
+        console.warn('If passing a vega spec you must provide a data object in the spec.');
+      }
     } else {
       //vega-lite spec. Modify the spec if data was passed.
       if (data) {
