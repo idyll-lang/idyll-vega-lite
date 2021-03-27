@@ -22,14 +22,19 @@ class IdyllVegaLite extends React.Component {
   }
   render() {
     const { spec, data, mode, ...props } = this.props;
+    let adjustedSpec = spec;
 
     let Runtime = VegaLite;
     if (this.props.mode === 'vega') {
       Runtime = Vega;
+    } else {
+      //vega-lite spec. Modify the spec if data was passed.
+      if (data) {
+        adjustedSpec = { data: { values: data }, ...spec };
+      }
     }
 
     const { handler } = this.state;
-    const adjustedSpec = { data: { values: data }, ...this.props.spec };
     return (
       <Runtime
         {...props}
