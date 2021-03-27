@@ -50,6 +50,11 @@ var IdyllVegaLite = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(IdyllVegaLite, [{
+    key: "isVegaSpec",
+    value: function isVegaSpec() {
+      return this.props.mode === 'vega' || this.props.spec.$schema && this.props.spec.$schema.startsWith("https://vega.github.io/schema/vega/");
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _require = require('vega-tooltip'),
@@ -65,17 +70,31 @@ var IdyllVegaLite = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           spec = _this$props.spec,
           data = _this$props.data,
-          props = _objectWithoutProperties(_this$props, ["spec", "data"]);
+          mode = _this$props.mode,
+          props = _objectWithoutProperties(_this$props, ["spec", "data", "mode"]);
+
+      var adjustedSpec = spec;
+      var Runtime = _reactVega.VegaLite;
+
+      if (this.isVegaSpec()) {
+        Runtime = _reactVega.Vega;
+
+        if (!adjustedSpec.data) {
+          console.warn('If passing a vega spec you must provide a data object in the spec.');
+        }
+      } else {
+        //vega-lite spec. Modify the spec if data was passed.
+        if (data) {
+          adjustedSpec = _objectSpread({
+            data: {
+              values: data
+            }
+          }, spec);
+        }
+      }
 
       var handler = this.state.handler;
-
-      var adjustedSpec = _objectSpread({}, this.props.spec, {
-        data: {
-          values: data
-        }
-      });
-
-      return React.createElement(_reactVega.VegaLite, _extends({}, props, {
+      return React.createElement(Runtime, _extends({}, props, {
         spec: adjustedSpec,
         tooltip: handler
       }));
@@ -85,4 +104,30 @@ var IdyllVegaLite = /*#__PURE__*/function (_React$Component) {
   return IdyllVegaLite;
 }(React.Component);
 
+_reactVega.VegaLite._idyll = {
+  name: 'IdyllVegaLite',
+  tagType: 'closed',
+  props: [{
+    name: 'data',
+    type: 'expression',
+    example: "`[{x: 0, y: 0}, {x: 1, y: 1}]`"
+  }, {
+    name: 'spec',
+    type: 'expression',
+    example: "`{\n  mark: \"line\",\n  encoding: {\n    x: {\n      field: \"x\",\n      type: \"quantitative\"\n    },\n    y: {\n      field: \"y\",\n      type: \"quantitative\"\n    }\n  }\n}`"
+  }, {
+    name: 'mode',
+    type: 'string',
+    "default": "\"vega-lite\"",
+    example: "\"vega-lite\""
+  }, {
+    name: 'width',
+    type: 'value',
+    example: "\"container\""
+  }, {
+    name: 'height',
+    type: 'number',
+    example: "300"
+  }]
+};
 module.exports = IdyllVegaLite;
