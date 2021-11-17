@@ -1,6 +1,6 @@
 {
   "name": "idyll-vega-lite",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Idyll wrapper component for vega lite",
   "main": "lib.js",
   "scripts": {
